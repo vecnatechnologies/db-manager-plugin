@@ -32,11 +32,11 @@ public class PostgresStrategyTest extends TestCase {
     PostgresStrategy pgs = new PostgresStrategy();
     PostgresDbInfo info = pgs.parse(URI.create("postgresql://localhost:7777/db1"));
     assertEquals("db1", info.getDbName());
-    assertEquals("jdbc:postgresql://localhost:7777/template1", info.getConnectUrl());
+    assertEquals("jdbc:postgresql://localhost:7777/postgres", info.getConnectUrl());
 
     info = pgs.parse(URI.create("postgresql://localhost/db2"));
 
     assertEquals("db2", info.getDbName());
-    assertEquals("jdbc:postgresql://localhost/template1", info.getConnectUrl());
+    assertEquals("jdbc:postgresql://localhost/postgres", info.getConnectUrl());
   }
 }
