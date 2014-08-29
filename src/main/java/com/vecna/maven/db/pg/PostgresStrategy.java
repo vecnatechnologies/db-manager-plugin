@@ -38,12 +38,7 @@ import com.vecna.maven.db.DbStrategy;
  * @author ogolberg@vecna.com
  */
 public class PostgresStrategy implements DbStrategy {
-  private static final int MAX_TRIES = 10;
-  private static final long RETRY_PAUSE = 200;
-
-  private static final String OBJECT_IN_USE = "55006";
-
-  private static final String TEMPLATE_DB = "/template1";
+  private static final String CONNECT_DB = "/postgres";
   private static final String JDBC = "jdbc:";
   private static final String DUMP_COMMAND = "pg_dump";
   private static final String PASSWORD_ENV = "PGPASSWORD";
@@ -65,11 +60,8 @@ public class PostgresStrategy implements DbStrategy {
    * run a SQL statement
    */
   private void execute(String url, String username, String password, String sql) throws SQLException {
-    Connection conn = DriverManager.getConnection(url, username, password);
-    try {
+    try (Connection conn = DriverManager.getConnection(url, username, password)) {
       conn.createStatement().execute(sql);
-    } finally {
-      conn.close();
     }
   }
 
@@ -83,7 +75,7 @@ public class PostgresStrategy implements DbStrategy {
     URI connectUri;
     try {
       connectUri = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(),
-                           TEMPLATE_DB, uri.getQuery(), uri.getFragment());
+                           CONNECT_DB, uri.getQuery(), uri.getFragment());
     } catch (URISyntaxException e) {
       throw new MojoExecutionException("cannot construct the connection URL", e);
     }
