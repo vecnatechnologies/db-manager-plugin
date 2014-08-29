@@ -4,7 +4,7 @@ db-manager-plugin
 About
 -----
 
-This is a very simple Maven that can create, drop, and dump PostgreSQL databases.
+This is a very simple Maven plugin that can create, drop, and dump PostgreSQL databases.
 
 Usage
 -----
