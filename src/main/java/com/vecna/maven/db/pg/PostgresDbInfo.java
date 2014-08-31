@@ -22,8 +22,8 @@ package com.vecna.maven.db.pg;
  * @author ogolberg@vecna.com
  */
 class PostgresDbInfo {
-  private final String m_dbName;
-  private final String m_connectUrl;
+  private final String dbName;
+  private final String connectUrl;
 
   /**
    * Create a new {@link PostgresDbInfo}
@@ -31,21 +31,21 @@ class PostgresDbInfo {
    * @param connectUrl a universal connection URL to run drop/create commands against
    */
   public PostgresDbInfo(String dbName, String connectUrl) {
-    m_dbName = dbName;
-    m_connectUrl = connectUrl;
+    this.dbName = dbName;
+    this.connectUrl = connectUrl;
   }
 
   /**
    * @return name of the database
    */
   public String getDbName() {
-    return m_dbName;
+    return dbName;
   }
 
   /**
    * @return universal connection URL to run drop/create commands against
    */
   public String getConnectUrl() {
-    return m_connectUrl;
+    return connectUrl;
   }
 }

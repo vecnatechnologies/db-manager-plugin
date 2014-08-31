@@ -29,7 +29,7 @@ import org.codehaus.plexus.util.FileUtils;
 /**
  * Dumps a database into a file.
  *
-= * @author ogolberg@vecna.com
+ * @author ogolberg@vecna.com
  */
 @Mojo(name = "dump", threadSafe = true)
 public class DumpDbMojo extends AbstractDbMojo {

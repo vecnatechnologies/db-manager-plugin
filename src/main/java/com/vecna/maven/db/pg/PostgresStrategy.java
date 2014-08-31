@@ -57,7 +57,12 @@ public class PostgresStrategy implements DbStrategy {
   }
 
   /**
-   * run a SQL statement
+   * Run a SQL statement.
+   * @param url jdbc url
+   * @param username jdbc username
+   * @param password jdbc password
+   * @param sql sql statement to execute
+   * @throws SQLException if the statement fails to execute
    */
   private void execute(String url, String username, String password, String sql) throws SQLException {
     try (Connection conn = DriverManager.getConnection(url, username, password)) {
