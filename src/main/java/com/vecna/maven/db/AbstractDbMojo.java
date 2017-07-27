@@ -36,7 +36,8 @@ public abstract class AbstractDbMojo extends AbstractMojo {
    * Map of protocol - strategy class. We load strategies via reflection so that JDBC drivers
    * can be added by the projects that use this plugin.
    */
-  private final Map<String, String> m_strategies = ImmutableMap.of("postgresql", "com.vecna.maven.db.pg.PostgresStrategy");
+  private final Map<String, String> strategies = ImmutableMap.of("postgresql", "com.vecna.maven.db.pg.PostgresStrategy",
+                                                                 "mysql", "com.vecna.maven.db.mysql.MysqlStrategy");
 
   /**
    * JDBC url
@@ -100,13 +101,13 @@ public abstract class AbstractDbMojo extends AbstractMojo {
    * @throws MojoFailureException if the protocol is not supported
    */
   protected DbStrategy lookupStrategy(String protocol) throws MojoFailureException {
-    String type = m_strategies.get(protocol);
+    String type = strategies.get(protocol);
     if (type == null) {
       throw new MojoFailureException("protocol " + protocol + " is not implemented");
     } else {
       try {
         return (DbStrategy) Class.forName(type).newInstance();
-      } catch (Exception e) {
+      } catch (Exception exception) {
         throw new IllegalStateException("cannot instantiate a strategy for protocol " + protocol);
       }
     }

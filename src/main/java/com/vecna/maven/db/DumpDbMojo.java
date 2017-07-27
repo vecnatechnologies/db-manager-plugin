@@ -50,8 +50,8 @@ public class DumpDbMojo extends AbstractDbMojo {
     if (parent != null) {
       try {
         FileUtils.forceMkdir(parent);
-      } catch (IOException e) {
-        throw new MojoExecutionException("failed to create " + parent, e);
+      } catch (IOException ioException) {
+        throw new MojoExecutionException("failed to create " + parent, ioException);
       }
     }
     lookupStrategy(uri.getScheme()).dumpDb(uri, username, password, file);
