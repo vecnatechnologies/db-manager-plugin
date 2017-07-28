@@ -16,7 +16,7 @@ permissions and limitations under the License.  -->
 
   <groupId>com.vecna.maven</groupId>
   <artifactId>db-manager-plugin</artifactId>
-  <version>1.7</version>
+  <version>1.8-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
   <name>db-manager-plugin</name>
 
